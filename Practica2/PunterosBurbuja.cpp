@@ -4,8 +4,8 @@ using namespace std;
 
 int main()
 {
-    int i,j;
-    int* Aux;
+    int i, j;
+    int *Aux;
     int *p[5];
     int A[5];
     A[0] = 8;

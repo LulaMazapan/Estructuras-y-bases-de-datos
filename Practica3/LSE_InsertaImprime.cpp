@@ -14,18 +14,19 @@ struct info{
 	char Nom[50];
 	int  Cantidad;
     float Precio;
+	double Venta;
 
 };
 
 
-info ini = {"\0",0,0}; // Inicialización de parámetros.
+info ini = {"\0",0,0,0}; // Inicialización de parámetros.
 
 info Leer() // Función para leer datos.
 
 {
 	info A;
 	
-	cout<<"Dame el Nombre del medicamento: ";
+	cout<<"Dame el nombre del Dulce: ";
 	cin.getline(A.Nom,50);
 	
 	cout<<"Cantidad: ";
@@ -34,6 +35,9 @@ info Leer() // Función para leer datos.
 	cout<<"Precio: $";
 	cin>>A.Precio;
 	
+	cout<<"Venta: $";
+	cin>>A.Venta;
+
 	return A;
 
 } 
@@ -66,6 +70,8 @@ class Nodo{
 	int RegCantidad(){return(Datos.Cantidad);}
 	
 	float RegPrecio(){return(Datos.Precio);}
+
+	double RegVenta(){return(Datos.Venta);}
 		
 };
 
@@ -129,7 +135,8 @@ void LSE::Imprimir(){ //Función para Imprimir los datos almacenados en la lista
 		
 		cout<<"Nombre del producto: "<<i->RegNom()<<endl;
 		cout<<"Cantidad disponible: "<<i->RegCantidad()<<endl;
-		cout<<"Precio por unidad: $"<<i->RegPrecio()<<endl;
+		cout<<"Precio de compra: $"<<i->RegPrecio()<<endl;
+		cout<<"Precio de venta: $"<<i->RegVenta()<<endl;
         
 		cout<<endl;
 		
@@ -145,21 +152,21 @@ char Cerrar(){ //Función para preguntar al usuario si desea continuar utilizand
 	do{
 		
 		
-		cout<<"Desea salir del programa? (Y/N)....... "<<endl;
+		cout<<"Desea realizar otra operacion? (Y/N)....... "<<endl;
 	    cin>>opc;
 	    	
-			if(toupper(opc) == 'Y')
+			if(toupper(opc) == 'N')
 		 	{
 				exit(0);
 			}
-			if (toupper(opc) != 'N')
+			if (toupper(opc) != 'Y')
 			{
 				cout<<"Escriba y o n."<<endl;
 				system("pause");
 				system("cls");
 			}
 			
-	}while(toupper(opc) != 'N');
+	}while(toupper(opc) != 'Y');
 	
 	return toupper(opc);
 }
@@ -168,9 +175,9 @@ char Cerrar(){ //Función para preguntar al usuario si desea continuar utilizand
 
 int main()
 {	
-	LSE lista; //Objeto de LSE.
+	LSE Lista; //Objeto de LSE.
 
-    info Medicamento = ini; //Declaración de estructura que contendrá el nodo e inicialización de parámetros.
+    info Dulce = ini; //Declaración de estructura que contendrá el nodo e inicialización de parámetros.
 
 	int num; //Variable parte del menú.
 	char opc[5];//Variable parte del menú.
@@ -199,9 +206,9 @@ int main()
 
 		 system("cls");
 		 
-		 Medicamento = Leer(); //Lectura de datos.
+		 Dulce = Leer(); //Lectura de datos.
 		 
-		 lista.Insertar(Medicamento); //Insertar los datos en la LSE.
+		 Lista.Insertar(Dulce); //Insertar los datos en la LSE.
 		 
 		 salir = Cerrar(); //Función para salir o continuar en el programa.
 	     
@@ -213,7 +220,7 @@ int main()
 
 		 system("cls");
 	    
-	     lista.Imprimir(); //Función para imprimir la lista.
+	     Lista.Imprimir(); //Función para imprimir la lista.
 	     
 	     salir = Cerrar(); //Función para salir o continuar en el programa.
 	     
@@ -229,6 +236,6 @@ int main()
     	
     	}
     	
-	}while(salir != 'Y'); //Condición de repetición.
+	}while(salir != 'N'); //Condición de repetición.
 
 }
